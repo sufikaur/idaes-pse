@@ -2,6 +2,11 @@
 build-backend = "setuptools.build_meta"
 requires = ["setuptools >= 64", "setuptools_scm >= 8"]
 
+[tool.setuptools_scm]
+# https://setuptools-scm.readthedocs.io/en/v8.1.0/extending/
+version_scheme = "only-version"
+local_scheme = "node-and-date"
+
 [project]
 name = "idaes-pse"
 description = "IDAES Process Systems Engineering Framework"
@@ -40,7 +45,8 @@ keywords = [
 # We will rely on classifiers and documentation to communicate supported versions.
 # requires-python = ">=3.10"
 
-version = "2.12.0dev0"
+# dynamic versioning with creating a tag for the most recent dev verion on the main branch
+dynamic = ["version"]
 
 dependencies = [
   "pyomo >= 6.10.0",
