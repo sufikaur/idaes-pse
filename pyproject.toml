@@ -4,8 +4,8 @@ requires = ["setuptools >= 64", "setuptools_scm >= 8"]
 
 [tool.setuptools_scm]
 # https://setuptools-scm.readthedocs.io/en/v8.1.0/extending/
-version_scheme = "only-version"
-local_scheme = "node-and-date"
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
 
 [project]
 name = "idaes-pse"
