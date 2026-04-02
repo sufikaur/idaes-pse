@@ -101,7 +101,7 @@ jobs:
           - os: win64
             runner-image: windows-2022
           - os: macos
-            runner-image: macos-14
+            runner-image: macos-latest
           - python-version: "3.11"
             # only generate coverage report for a single python version in the matrix
             # to avoid overloading Codecov
