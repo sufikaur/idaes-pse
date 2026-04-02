@@ -93,7 +93,9 @@ jobs:
               # without having to dig in each job's log output
               print(f'::warning ::{msg}')
           def _set_output(name, val):
-              print(f'::set-output name={name}::{val}')
+            import os
+            with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"{name}={val}\n")
           event_name = env["GITHUB_EVENT_NAME"]
           event_action = env["_GITHUB_EVENT_ACTION"]
           is_pr = 'pull_request' in event_name.lower()
@@ -130,11 +132,14 @@ jobs:
         os:
           - linux
           - win64
+          - macos
         include:
           - os: linux
             runner-image: ubuntu-24.04
           - os: win64
             runner-image: windows-2022
+          - os: macos
+            runner-image: macos-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/display-debug-info
