@@ -27,7 +27,7 @@ on:
 concurrency:
   # NOTE: the value of `group` should be chosen carefully,
   # otherwise we might end up over- or under-canceling workflow runs
-  group: ${{ github.workflow }}-${{ github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
