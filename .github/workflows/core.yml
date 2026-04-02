@@ -33,7 +33,7 @@ concurrency:
   # to avoid over-canceling runs from `main`
   # in which case we'd need to access the PR number from somewhere else rather than `github.ref_name`
   # to avoid under-canceling runs from PRs
-  group: ${{ github.workflow }}-${{ github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
@@ -94,11 +94,14 @@ jobs:
         os:
           - linux
           - win64
+          - macos
         include:
           - os: linux
             runner-image: ubuntu-24.04
           - os: win64
             runner-image: windows-2022
+          - os: macos
+            runner-image: macos-14
           - python-version: "3.11"
             # only generate coverage report for a single python version in the matrix
             # to avoid overloading Codecov
